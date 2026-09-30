@@ -30,11 +30,11 @@ def main(page: ft.Page):
 
     tabla = ft.DataTable(
         columns=[
-            ft.DataColumn(ft.Text("Código")),
-            ft.DataColumn(ft.Text("Nombre")),
-            ft.DataColumn(ft.Text("Categoría")),
-            ft.DataColumn(ft.Text("Precio")),
-            ft.DataColumn(ft.Text("Stock")),
+            ft.DataColumn(label=ft.Text("Código")),
+            ft.DataColumn(label=ft.Text("Nombre")),
+            ft.DataColumn(label=ft.Text("Categoría")),
+            ft.DataColumn(label=ft.Text("Precio")),
+            ft.DataColumn(label=ft.Text("Stock")),
         ],
         rows=[],
     )
@@ -82,7 +82,7 @@ def main(page: ft.Page):
                         ft.DataCell(ft.Text(f"${producto.precio:.2f}")),
                         ft.DataCell(ft.Text(str(producto.stock))),
                     ],
-                    on_select_changed=lambda e, cod=producto.codigo: cargar_producto(cod),
+                    on_select_change=lambda e, cod=producto.codigo: cargar_producto(cod),
                 )
             )
         page.update()
@@ -179,11 +179,11 @@ def main(page: ft.Page):
         ft.Row([campo_codigo, campo_nombre, campo_categoria, campo_precio, campo_stock], wrap=True),
         ft.Row(
             [
-                ft.ElevatedButton("Agregar", on_click=agregar_click),
-                ft.ElevatedButton("Buscar", on_click=buscar_click),
-                ft.ElevatedButton("Actualizar", on_click=actualizar_click),
-                ft.ElevatedButton("Eliminar", on_click=eliminar_click),
-                ft.OutlinedButton("Limpiar formulario", on_click=limpiar_click),
+                ft.Button(content="Agregar", on_click=agregar_click),
+                ft.Button(content="Buscar", on_click=buscar_click),
+                ft.Button(content="Actualizar", on_click=actualizar_click),
+                ft.Button(content="Eliminar", on_click=eliminar_click),
+                ft.OutlinedButton(content="Limpiar formulario", on_click=limpiar_click),
             ],
             wrap=True,
         ),
@@ -205,4 +205,4 @@ def main(page: ft.Page):
 
 
 if __name__ == "__main__":
-    ft.app(target=main)
+    ft.run(main)
